@@ -16,6 +16,17 @@
 			commandId="com.hybris.hyeclipse.impex.importer.commands.impexImport"
 			class="com.hybris.hyeclipse.impex.importer.handlers.ImpexImportHandler">
 		</handler>
+
+		<handler
+			commandId="com.hybris.hyeclipse.impex.importer.commands.impexSelection"
+			class="com.hybris.hyeclipse.impex.importer.handlers.ImpexSelectionHandler">
+			<enabledWhen>
+				<with variable="selection">
+					<count value="+"/>
+					<iterate ifEmpty="false"/>
+				</with>
+			</enabledWhen>
+		</handler>
 		
 		<handler
 			commandId="com.hybris.hyeclipse.impex.importer.commands.impexImportWithMacro"
@@ -30,6 +41,21 @@
 			<command
 				commandId="com.hybris.hyeclipse.impex.importer.commands.impexImport"
 				label="[y] Impex Import"
+				style="push" icon="icons/hybris.ico">
+				<visibleWhen>
+					<test forcePluginActivation="true"
+						property="com.hybris.hyeclipse.impex.importer.isImpex">
+					</test>
+				</visibleWhen>
+			</command>
+		</menuContribution>
+
+		<menuContribution 
+			id="com.hybris.hyeclipse.menuContribution.impexSelection"
+			locationURI="popup:org.eclipse.ui.popup.any?after=additions">
+			<command
+				commandId="com.hybris.hyeclipse.impex.importer.commands.impexSelection"
+				label="[y] Impex Selection"
 				style="push" icon="icons/hybris.ico">
 				<visibleWhen>
 					<test forcePluginActivation="true"
