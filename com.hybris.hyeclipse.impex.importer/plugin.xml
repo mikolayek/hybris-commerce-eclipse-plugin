@@ -9,6 +9,15 @@
 			properties="isImpex"
 			type="java.lang.Object">
 		</propertyTester>
+		
+		<propertyTester
+			class="com.hybris.hyeclipse.impex.importer.testers.SelectionPropertyTester"
+			id="com.hybris.hyeclipse.impex.importer.testers.SelectionPropertyTester"
+			namespace="com.hybris.hyeclipse.impex.importer"
+			properties="hasSelection"
+			type="java.lang.Object">
+		</propertyTester>
+		
 	</extension>
    
 	<extension point="org.eclipse.ui.handlers">
@@ -21,10 +30,7 @@
 			commandId="com.hybris.hyeclipse.impex.importer.commands.impexSelection"
 			class="com.hybris.hyeclipse.impex.importer.handlers.ImpexSelectionHandler">
 			<enabledWhen>
-				<with variable="selection">
-					<count value="+"/>
-					<iterate ifEmpty="false"/>
-				</with>
+				<test property="com.hybris.hyeclipse.impex.importer.hasSelection"/>
 			</enabledWhen>
 		</handler>
 		
