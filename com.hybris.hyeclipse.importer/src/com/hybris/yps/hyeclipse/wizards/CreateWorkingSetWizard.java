@@ -58,9 +58,11 @@ public class CreateWorkingSetWizard extends Wizard {
 
 		try {
 			new ProgressMonitorDialog(getContainer().getShell()).run(true, false, importer);
-		} catch (InvocationTargetException | InterruptedException e) {
-			Throwable t = (e instanceof InvocationTargetException) ? e.getCause() : e;
-			MessageDialog.openError(this.page.getControl().getShell(), "Error", t.toString());
+		} catch (InvocationTargetException e) {
+			MessageDialog.openError(this.page.getControl().getShell(), "Error", e.getMessage());
+		} catch (InterruptedException  e) {
+			MessageDialog.openError(this.page.getControl().getShell(), "Error", e.getMessage());
+			Thread.currentThread().interrupt();
 		}
 		return true;
 	}

@@ -4,7 +4,7 @@ Bundle-Name: junit
 Bundle-SymbolicName: com.hybris.hyeclipse.junit;singleton:=true
 Bundle-Version: 1.0.4.qualifier
 Bundle-Activator: com.hybris.hyeclipse.junit.Activator
-Bundle-Vendor: HYBRIS
+Bundle-Vendor: SAP
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.jface,
@@ -14,12 +14,17 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.debug.core,
  org.eclipse.debug.ui,
  org.apache.commons.io,
- com.hybris.hyeclipse.ytypesystem;bundle-version="[1.0.0,2.0.0)",
- com.hybris.hyeclipse.importer;bundle-version="[1.0.0,2.0.0)",
+ com.hybris.hyeclipse.ytypesystem,
+ com.hybris.hyeclipse.importer,
  org.eclipse.jdt.junit.runtime,
  org.eclipse.jdt.junit4.runtime,
  org.junit,
- org.eclipse.jdt.junit
+ org.eclipse.jdt.junit,
+ org.eclipse.swtbot.eclipse.finder,
+ org.eclipse.swtbot.forms.finder,
+ org.eclipse.swtbot.swt.finder,
+ org.eclipse.swtbot.junit4_x,
+ org.eclipse.swtbot.e4.finder
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .,lib/ybootstrap.jar,lib/coreserver.jar,lib/commons-lang-2.6.jar

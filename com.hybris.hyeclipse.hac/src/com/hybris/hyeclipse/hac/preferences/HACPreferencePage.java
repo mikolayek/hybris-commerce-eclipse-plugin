@@ -1,7 +1,5 @@
 package com.hybris.hyeclipse.hac.preferences;
 
-import java.util.regex.Pattern;
-
 import org.eclipse.jface.preference.FieldEditorPreferencePage;
 import org.eclipse.jface.preference.IntegerFieldEditor;
 import org.eclipse.jface.preference.StringFieldEditor;

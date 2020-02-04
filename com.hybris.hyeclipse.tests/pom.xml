@@ -1,23 +1,80 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <artifactId>com.hybris.hyeclipse.tests</artifactId>
-  <version>1.0.4-SNAPSHOT</version>
-  <packaging>eclipse-test-plugin</packaging>
-  <name>SAP Commerce Cloud, development tools for Eclipse unit test container</name>
-  <parent>
-  	<groupId>com.hybris.hyeclipse</groupId>
-  	<artifactId>com.hybris.hyeclipse.parent</artifactId>
-  	<version>1.0.4</version>
-  </parent>
-  
-  <build>
-        <plugins>
-            <plugin>
-                <groupId>org.eclipse.tycho</groupId>
-                <artifactId>tycho-surefire-plugin</artifactId>
-                <version>${tycho-version}</version>
-            </plugin>
-        </plugins>
-    </build>
-  
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>com.hybris.hyeclipse.tests</artifactId>
+	<packaging>eclipse-test-plugin</packaging>
+	<name>SAP Commerce Cloud, development tools for Eclipse unit test container</name>
+	<parent>
+		<groupId>com.hybris.hyeclipse</groupId>
+		<artifactId>com.hybris.hyeclipse.parent</artifactId>
+		<version>1.0.4-SNAPSHOT</version>
+	</parent>
+
+	<profiles>
+		<profile>
+			<id>osx</id>
+			<activation>
+				<os>
+					<family>mac</family>
+				</os>
+			</activation>
+			<properties>
+				<test.argLine>-XstartOnFirstThread</test.argLine>
+			</properties>
+		</profile>
+	</profiles>
+
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>target-platform-configuration</artifactId>
+				<version>${tycho-version}</version>
+				<configuration>
+					<useUIHarness>true</useUIHarness>
+					<useUIThread>false</useUIThread>
+					<product>org.eclipse.sdk.ide</product>
+					<application>org.eclipse.ui.ide.workbench</application>
+					<dependency-resolution>
+						<extraRequirements>
+							<requirement>
+								<type>eclipse-feature</type>
+								<id>org.eclipse.jdt</id>
+								<versionRange>0.0.0</versionRange>
+							</requirement>
+							<requirement>
+								<type>eclipse-feature</type>
+								<id>org.eclipse.platform</id>
+								<versionRange>0.0.0</versionRange>
+							</requirement>
+							<requirement>
+								<type>eclipse-feature</type>
+								<id>org.eclipse.rcp</id>
+								<versionRange>0.0.0</versionRange>
+							</requirement>
+							<requirement>
+								<type>eclipse-feature</type>
+								<id>org.eclipse.m2e.feature</id>
+								<versionRange>0.0.0</versionRange>
+							</requirement>
+						</extraRequirements>
+					</dependency-resolution>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-surefire-plugin</artifactId>
+				<version>${tycho-version}</version>
+				<configuration>
+					<forkedProcessTimeoutInSeconds>200</forkedProcessTimeoutInSeconds>
+					<includes>**/*Test.java</includes>
+					<useUIHarness>true</useUIHarness>
+					<argLine>${test.argLine}</argLine>
+					<trimStackTrace>false</trimStackTrace>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 </project>

@@ -11,62 +11,52 @@ import org.eclipse.jface.wizard.Wizard;
 import com.hybris.yps.hyeclipse.utils.ProjectSourceUtil;
 
 /**
- * Wizard to walk the user through attaching the sources to the projects in the workspace.
+ * Wizard to walk the user through attaching the sources to the projects in the
+ * workspace.
  * 
  * @author mheuer
  *
  */
-public class AttachSourcesWizard extends Wizard
-{
-	private AttachSourcesPage	page;
+public class AttachSourcesWizard extends Wizard {
+	private AttachSourcesPage page;
 
 	@Override
-	public String getWindowTitle()
-	{
+	public String getWindowTitle() {
 		return "Attaching [y] Sources";
 	}
 
 	@Override
-	public void addPages()
-	{
-		page = new AttachSourcesPage(false); // source archive is not optional
-		addPage( page );
+	public void addPages() {
+		page = new AttachSourcesPage(false);
+		addPage(page);
 	}
 
 	@Override
-	public boolean canFinish() 
-	{
+	public boolean canFinish() {
 		return page.isPageComplete();
 	}
-	
+
 	@Override
-	public boolean performFinish()
-	{
-		if (!page.validatePage()) 
-		{
-			MessageDialog
-			.openError(
-					getShell(),
-					"Unreadable or non-existing file specified",
-					"Please make sure the archive you selected is readable to the current user and exists." );
-			// and ... abort
+	public boolean performFinish() {
+		if (!page.validatePage()) {
+			MessageDialog.openError(getShell(), "Unreadable or non-existing file specified",
+					"Please make sure the archive you selected is readable to the current user and exists.");
 			return false;
 		}
-		
+
 		File sourceArchive = page.getSourceFile();
 		IRunnableWithProgress runner = ProjectSourceUtil.getRunner(sourceArchive);
 
-		try
-		{
-			new ProgressMonitorDialog( getContainer().getShell() ).run( true, false, runner );
+		try {
+			new ProgressMonitorDialog(getContainer().getShell()).run(true, false, runner);
 
+		} catch (InvocationTargetException e) {
+			MessageDialog.openError(getShell(), "Error attaching sources", e.getMessage());
+		} catch (InterruptedException e) {
+			MessageDialog.openError(getShell(), "Error attaching sources", e.getMessage());
+			Thread.currentThread().interrupt();
 		}
-		catch( InvocationTargetException | InterruptedException e )
-		{
-			Throwable t = (e instanceof InvocationTargetException) ? e.getCause() : e;
-			MessageDialog.openError( getShell(), "Error attaching sources", t.toString() );
-		}
-		
+
 		return true;
 	}
 }

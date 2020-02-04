@@ -3,10 +3,6 @@ package com.hybris.hyeclipse.commons.utils;
 import java.util.Arrays;
 import java.util.Optional;
 
-import org.eclipse.swt.graphics.Color;
-import org.eclipse.swt.graphics.RGB;
-import org.eclipse.swt.widgets.Display;
-import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.console.ConsolePlugin;
 import org.eclipse.ui.console.IConsole;
 import org.eclipse.ui.console.IConsoleManager;
@@ -84,11 +80,12 @@ public final class ConsoleUtils {
 	 * @param message error message to print
 	 */
 	public static void printError(final String message) {
-		final Display display = PlatformUI.getWorkbench().getDisplay();
-		final MessageConsoleStream consoleStream = getConsoleStream();
-		final Color color = new Color(display, new RGB(255, 0, 0));
-		
-		consoleStream.setColor(color);
-		consoleStream.println(message);
+		printMessage(message);
+//		final Display display = PlatformUI.getWorkbench().getDisplay();
+//		final MessageConsoleStream consoleStream = getConsoleStream();
+//		final Color color = new Color(display, new RGB(255, 0, 0));
+//		
+//		consoleStream.setColor(color);
+//		consoleStream.println(message);
 	}
 }

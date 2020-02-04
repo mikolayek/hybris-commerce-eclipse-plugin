@@ -5,20 +5,42 @@
 
 	<groupId>com.hybris.hyeclipse</groupId>
 	<artifactId>com.hybris.hyeclipse.parent</artifactId>
-	<version>1.0.4</version>
+	<version>1.0.4-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>SAP Hybris Commerce, development tools for Eclipse (parent)</name>
-
-	<developers>
-	</developers>
-	<contributors>
-	</contributors>
+	
+	<organization>
+		<name>SAP SE</name>
+		<url>https://sap.com</url>
+	</organization>
+	<url>https://github.com/SAP/hybris-commerce-eclipse-plugin</url>
+	<inceptionYear>2015</inceptionYear>
 
 	<prerequisites>
 		<maven>3.0</maven>
 	</prerequisites>
 
+	<licenses>
+		<license>
+			<name>Apache License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0</url>
+		</license>
+	</licenses>
+	
+	<scm>
+		<connection>https://github.com/SAP/hybris-commerce-eclipse-plugin.git</connection>
+		<tag>HEAD</tag>
+		<url>https://github.com/SAP/hybris-commerce-eclipse-plugin</url>
+	</scm>
+	
+	<issueManagement>
+		<url>https://github.com/SAP/hybris-commerce-eclipse-plugin/issues</url>
+		<system>GitHub</system>
+	</issueManagement>
+
 	<properties>
+		<!-- <p2.qualifier>SNAPSHOT</p2.qualifier> -->
+		<p2.sign>false</p2.sign>
 		<tycho-version>1.4.0</tycho-version>
 
 		<!-- PROJECT SETTINGS -->
@@ -26,15 +48,14 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<sonar.host.url>http://localhost:9000</sonar.host.url>
 		<sonar.login>eda79532c62e9bdee9a12296c789d1e712d9bcce</sonar.login>
+		<encoding>UTF-8</encoding>
 	</properties>
 
 
 	<modules>
 		<module>com.hybris.hyeclipse.commons</module>
 		<module>com.hybris.hyeclipse.hac</module>
-		<module>com.hybris.hyeclipse.script.executor</module>
 		<module>com.hybris.hyeclipse.impexed</module>
-		<module>com.hybris.hyeclipse.impex.importer</module>
 		<module>com.hybris.hyeclipse.importer</module>
 		<module>com.hybris.hyeclipse.site</module>
 		<module>com.hybris.hyeclipse.feature</module>
@@ -51,11 +72,11 @@
 		<module>com.hybris.hyeclipse.tests</module>
 	</modules>
 
-	<repositories>
+	<repositories>		
 		<repository>
-			<id>oxygen</id>
+			<id>2019-09</id>
 			<layout>p2</layout>
-			<url>http://download.eclipse.org/releases/oxygen</url>
+			<url>http://download.eclipse.org/releases/2019-09</url>
 		</repository>
 		 
 	</repositories>
@@ -122,6 +143,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
-
 </project>
