@@ -107,7 +107,7 @@ abstract class TsvBuilder extends IncrementalProjectBuilder {
         deleteMarkers(file);
         for (final IResult result : results) {
         	if (result.getState() == ResultState.FAIL || result.getState() == ResultState.ERROR) {
-				addMarker(file, result.getDescription(), result.getLine() != null ? result.getLine().intValue() : 1, IMarker.SEVERITY_ERROR,
+				addMarker(file, result.getDescription(), result.getLine() != null ? Integer.valueOf(result.getLine()) : 1, IMarker.SEVERITY_ERROR,
 						priorityMap.get(result.getRule().getPriority()));
         	}
         	progress.worked(1);

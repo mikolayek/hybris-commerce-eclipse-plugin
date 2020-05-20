@@ -37,6 +37,7 @@ import com.hybris.ps.tsv.main.CmdLineOptions;
 import com.hybris.ps.tsv.main.TSVMain;
 import com.hybris.ps.tsv.output.OutputFormat;
 import com.hybris.ps.tsv.results.IResult;
+import com.hybris.ps.tsv.results.RulesCheckResults;
 import com.hybris.ps.tsv.rules.IRuleSet;
 
 public class RunTSVWizard extends Wizard implements INewWizard {
@@ -142,10 +143,17 @@ public class RunTSVWizard extends Wizard implements INewWizard {
 				tsvMain.getTestExecutionService().execute(file,  ruleSet);
 	        }
 			
-			List<IResult> results = tsvMain.getResultProvider().getResults();
+			List<RulesCheckResults> rr = tsvMain.getResultProvider().getResults();
+			List<IResult> results = new ArrayList<IResult>();
+			
+			for (RulesCheckResults rulesCheckResults : rr) {
+				results.addAll(rulesCheckResults.getRuleResults());
+			}
+			
+			 
 			
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();
-			tsvMain.getOutputGenerator().generate(baos, OutputFormat.XML, results);
+			tsvMain.getOutputGenerator().generate(baos, OutputFormat.XML, rr);
 			byte[] bytes = baos.toByteArray();
 	        ByteArrayInputStream bais = new ByteArrayInputStream(bytes);
 	        setResultsString(fromStream(bais));

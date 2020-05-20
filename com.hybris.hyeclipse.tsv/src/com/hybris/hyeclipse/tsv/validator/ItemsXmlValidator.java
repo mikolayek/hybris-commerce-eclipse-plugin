@@ -23,6 +23,7 @@ import org.xml.sax.SAXParseException;
 import com.hybris.ps.tsv.results.IResult;
 import com.hybris.ps.tsv.results.IResultFactory;
 import com.hybris.ps.tsv.results.ResultState;
+import com.hybris.ps.tsv.results.RulesCheckResults;
 import com.hybris.ps.tsv.rules.IRule;
 import com.hybris.ps.tsv.rules.IRuleSet;
 
@@ -67,7 +68,8 @@ public class ItemsXmlValidator {
 				final Document doc = parseItemsXml(is, progress.newChild(20));
 				final SubMonitor ruleCheckMonitor = progress.newChild(80).setWorkRemaining(ruleSet.getRules().size());
 				for (final IRule rule : ruleSet.getRules()) {
-					results.addAll(rule.check(itemsXmlLocation, doc));
+					RulesCheckResults rchecks = rule.check(itemsXmlLocation, doc, null);
+					results.addAll(rchecks.getRuleResults());
 					ruleCheckMonitor.worked(1);
 				}
 	        }

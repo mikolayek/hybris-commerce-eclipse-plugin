@@ -31,7 +31,7 @@ public class Activator extends AbstractUIPlugin {
 	// used to disable the nature lookup during importing
 	private static final String ORG_ECLIPSE_EPP_MPC_NATURELOOKUP = "org.eclipse.epp.mpc.naturelookup";
 	private static final String ORG_ECLIPSE_EPP_MPC_UI_PREFS = "org.eclipse.epp.mpc.ui";
-	
+	public static final String EXTENSIONINFO_XML = "extensioninfo.xml";
 	/**
 	 * The constructor
 	 */

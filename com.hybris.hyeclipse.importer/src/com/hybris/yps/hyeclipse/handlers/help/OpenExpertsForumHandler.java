@@ -5,7 +5,7 @@ public class OpenExpertsForumHandler extends AbstractOpenInExternalBrowserHandle
 	
 	@Override
 	protected String getURL() {
-		return "https://experts.hybris.com/spaces/72/view.html";
+		return "https://community.sap.com/topics/commerce-cloud";
 	}
 
 }
