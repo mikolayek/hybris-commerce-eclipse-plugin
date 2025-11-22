@@ -18,7 +18,7 @@
 	</developers>
 
 	<properties>
-		<tycho-version>3.0.4</tycho-version>
+		<tycho-version>5.0.0</tycho-version>
 
 		<!-- PROJECT SETTINGS -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -29,7 +29,7 @@
 		<sonar.organization>sap-1</sonar.organization>
 		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
 		<sonar.moduleKey>${project.groupId}:${project.artifactId}</sonar.moduleKey>
-		<sonar.java.source>11</sonar.java.source>
+		<sonar.java.source>21</sonar.java.source>
 	</properties>
 
 	<prerequisites>
@@ -41,17 +41,11 @@
 		<tag>HEAD</tag>
 		<url>https://github.com/SAP/hybris-commerce-eclipse-plugin</url>
 	</scm>
-	
+
 	<issueManagement>
 		<url>https://github.com/SAP/hybris-commerce-eclipse-plugin/issues</url>
 		<system>GitHub</system>
 	</issueManagement>
-	
-	<ciManagement>
-		<url>https://app.travis-ci.com/github/SAP/hybris-commerce-eclipse-plugin/</url>
-		<system>Travis-CI</system>
-	</ciManagement>
-
 
 	<modules>
 		<module>com.hybris.hyeclipse.commons</module>
@@ -74,9 +68,9 @@
 
 	<repositories>
 		<repository>
-			<id>2021-06</id>
+			<id>2024-09</id>
 			<layout>p2</layout>
-			<url>https://download.eclipse.org/releases/2021-06</url>
+			<url>https://download.eclipse.org/releases/2024-09</url>
 		</repository>
 
 	</repositories>
@@ -87,7 +81,7 @@
 				<plugin>
 					<groupId>org.sonarsource.scanner.maven</groupId>
 					<artifactId>sonar-maven-plugin</artifactId>
-					<version>3.9.1.2184</version>
+					<version>5.2.0.4988</version>
 				</plugin>
 			</plugins>
 		</pluginManagement>
@@ -95,7 +89,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-enforcer-plugin</artifactId>
-				<version>3.1.0</version>
+				<version>3.6.2</version>
 				<executions>
 					<execution>
 						<id>enforce-maven</id>
@@ -123,8 +117,8 @@
 				<artifactId>tycho-compiler-plugin</artifactId>
 				<version>${tycho-version}</version>
 				<configuration>
-					<source>11</source>
-					<target>11</target>
+					<source>21</source>
+					<target>21</target>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -153,6 +147,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
-
 </project>
