@@ -29,7 +29,6 @@ import org.eclipse.ui.console.MessageConsoleStream;
 public class ShellImporter {
 
 	private String ANT_INIT_CONFIG = "updateMavenDependencies";
-//	private String ANT_CLEAN_ALL = "clean all";
 	private String ANT_LOG = "ant.ser.log";
 
 	private MessageConsoleStream out;
@@ -62,6 +61,14 @@ public class ShellImporter {
 		return System.getProperty("os.name").toLowerCase().startsWith("windows");
 	}
 
+	public String getUnixShell() {
+		String shell = System.getenv("SHELL"); //$NON-NLS-1$
+		if (shell != null && !shell.isEmpty()) {
+			return shell;
+		}
+		return "/bin/bash"; //$NON-NLS-1$
+	}
+
 	private final String defaultShell() {
 		String shell = null;
 		if (Platform.OS_WIN32.equals(Platform.getOS())) {
@@ -70,12 +77,9 @@ public class ShellImporter {
 			} else {
 				shell = "cmd.exe"; //$NON-NLS-1$
 			}
+		} else {
+			shell = getUnixShell();
 		}
-		if (shell == null) {
-
-			shell = "/bin/bash"; //$NON-NLS-1$
-		}
-
 		return shell;
 	}
 
@@ -106,8 +110,13 @@ public class ShellImporter {
 			completionServe.submit(sout, null);
 			completionServe.submit(serr, null);
 			int exitCode = process.waitFor();
+			var logFile = platformHome.toPath().resolve(ANT_LOG);
 			out.println(String.format("-------------  End Run Test Case: (%s)  -------------", exitCode));
-			flushToFile(platformHome.toPath().resolve(ANT_LOG));
+			out.println(String.format("Build Log: %s", logFile.toAbsolutePath()));
+			if (exitCode != 0) {
+				out.println("^^^ Review log file with errors");
+			}
+			flushToFile(logFile);
 		} catch (IOException | InterruptedException e) {
 			e.printStackTrace();
 		}

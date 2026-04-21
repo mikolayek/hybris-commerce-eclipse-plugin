@@ -27,6 +27,8 @@ import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
+import org.eclipse.swt.widgets.FileDialog;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IImportWizard;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.PlatformUI;
@@ -37,11 +39,11 @@ import org.osgi.service.prefs.Preferences;
 import com.hybris.hyeclipse.commons.Constants;
 import com.hybris.yps.hyeclipse.Activator;
 import com.hybris.yps.hyeclipse.CommandState;
-import com.hybris.yps.hyeclipse.utils.AntImporter;
 import com.hybris.yps.hyeclipse.utils.FixProjectsUtils;
 import com.hybris.yps.hyeclipse.utils.Importer;
 import com.hybris.yps.hyeclipse.utils.ProjectSourceJob;
 import com.hybris.yps.hyeclipse.utils.ShellImporter;
+import com.hybris.yps.hyeclipse.wizards.pages.ImportGradlePlatformPage;
 
 /**
  * Wizard to walk the user through importing all projects from a given platform
@@ -51,8 +53,8 @@ import com.hybris.yps.hyeclipse.utils.ShellImporter;
  * @author Pawel Wolanski
  *
  */
-public class ImportPlatformWizard extends Wizard implements IImportWizard {
-	private ImportPlatformPage page1;
+public class ImportGradlePlatformWizard extends Wizard implements IImportWizard {
+	private ImportGradlePlatformPage page1;
 	private AttachSourcesPage page2;
 
 	class ImportJob extends Job {
@@ -183,8 +185,8 @@ public class ImportPlatformWizard extends Wizard implements IImportWizard {
 		}
 	}
 
-	public ImportPlatformWizard() {
-		this.page1 = new ImportPlatformPage();
+	public ImportGradlePlatformWizard() {
+		this.page1 = new ImportGradlePlatformPage();
 		this.page2 = new AttachSourcesPage(true); // this page is optional: true
 	}
 
@@ -203,6 +205,23 @@ public class ImportPlatformWizard extends Wizard implements IImportWizard {
 	@Override
 	public boolean canFinish() {
 		return page1.isPageComplete() && page2.isPageComplete();
+	}
+	
+	public FileDialog showFileDialog(Shell shell, String defaultDirectory, String defaultFile,
+			String[] filterExtensions) {
+		FileDialog fileDialog = new FileDialog(shell, 4096);
+		if (defaultDirectory != null) {
+			defaultDirectory.length();
+		}
+
+		if (defaultDirectory != null && defaultDirectory.length() != 0) {
+			fileDialog.setFilterPath(defaultDirectory);
+		}
+
+		fileDialog.setFileName(defaultFile);
+		fileDialog.setFilterExtensions(filterExtensions);
+		fileDialog.open();
+		return fileDialog;
 	}
 
 	@Override
