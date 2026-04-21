@@ -67,13 +67,13 @@ public class ExtensionCellModifier implements ICellModifier {
 				result = extension.getName();
 				break;
 			case 1 : // CORE_COLUMN 
-				result = new Boolean(extension.isCoreModule());
+				result = Boolean.valueOf(extension.isCoreModule());
 				break;
 			case 2 : // WEB_COLUMN 
-				result = new Boolean(extension.isWebModule());					
+				result = Boolean.valueOf(extension.isWebModule());					
 				break;
 			case 3 : // HMC_COLUMN 
-				result = new Boolean(extension.isHmcModule());
+				result = Boolean.valueOf(extension.isHmcModule());
 				break;
 			default :
 				result = "";
