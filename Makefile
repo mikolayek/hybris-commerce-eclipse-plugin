@@ -1,10 +1,13 @@
-.PHONY: build test reuse wrapper
+.PHONY: build test package reuse wrapper
 
 build:
 	./mvnw clean install
 
 test:
 	./mvnw clean verify -pl com.hybris.hyeclipse.tests
+
+package:
+	./mvnw clean package -pl com.hybris.hyeclipse.site --also-make
 
 reuse:
 	pipx run reuse lint
