@@ -1,7 +1,6 @@
 package com.hybris.yps.hyeclipse.wizards;
 
 import java.io.File;
-import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -17,7 +16,6 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.MultiStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
-import org.eclipse.core.runtime.preferences.InstanceScope;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.launching.AbstractVMInstall;
@@ -27,14 +25,10 @@ import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
-import org.eclipse.swt.widgets.FileDialog;
-import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IImportWizard;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.services.ISourceProviderService;
-import org.osgi.service.prefs.BackingStoreException;
-import org.osgi.service.prefs.Preferences;
 
 import com.hybris.hyeclipse.commons.Constants;
 import com.hybris.yps.hyeclipse.Activator;
@@ -43,6 +37,7 @@ import com.hybris.yps.hyeclipse.utils.FixProjectsUtils;
 import com.hybris.yps.hyeclipse.utils.Importer;
 import com.hybris.yps.hyeclipse.utils.ProjectSourceJob;
 import com.hybris.yps.hyeclipse.utils.ShellImporter;
+import com.hybris.yps.hyeclipse.wizards.pages.AttachSourcesPage;
 import com.hybris.yps.hyeclipse.wizards.pages.ImportGradlePlatformPage;
 
 /**
@@ -187,7 +182,7 @@ public class ImportGradlePlatformWizard extends Wizard implements IImportWizard 
 
 	public ImportGradlePlatformWizard() {
 		this.page1 = new ImportGradlePlatformPage();
-		this.page2 = new AttachSourcesPage(true); // this page is optional: true
+		this.page2 = new AttachSourcesPage(true);
 	}
 
 	@Override
@@ -205,23 +200,6 @@ public class ImportGradlePlatformWizard extends Wizard implements IImportWizard 
 	@Override
 	public boolean canFinish() {
 		return page1.isPageComplete() && page2.isPageComplete();
-	}
-	
-	public FileDialog showFileDialog(Shell shell, String defaultDirectory, String defaultFile,
-			String[] filterExtensions) {
-		FileDialog fileDialog = new FileDialog(shell, 4096);
-		if (defaultDirectory != null) {
-			defaultDirectory.length();
-		}
-
-		if (defaultDirectory != null && defaultDirectory.length() != 0) {
-			fileDialog.setFilterPath(defaultDirectory);
-		}
-
-		fileDialog.setFileName(defaultFile);
-		fileDialog.setFilterExtensions(filterExtensions);
-		fileDialog.open();
-		return fileDialog;
 	}
 
 	@Override
@@ -242,7 +220,7 @@ public class ImportGradlePlatformWizard extends Wizard implements IImportWizard 
 			return false;
 		}
 
-		importPlatform();
+		importGradleProject();
 		attachSources();
 
 		return true;
@@ -258,23 +236,9 @@ public class ImportGradlePlatformWizard extends Wizard implements IImportWizard 
 			new ProjectSourceJob(sourceArchive).schedule();
 		}
 	}
-
-	/**
-	 * Workhorse to do the actual import of the projects into this workspace.
-	 */
-	private void importPlatform() {
-		final File platformDir = page1.getPlatformDirectory();
-
-		// Set platform home as workspace preference
-		try {
-			String platformDirStr = platformDir.getCanonicalPath();
-			Preferences preferences = InstanceScope.INSTANCE.getNode("com.hybris.hyeclipse.preferences"); //$NON-NLS-1$
-			preferences.put("platform_home", platformDirStr); //$NON-NLS-1$
-			preferences.flush();
-			new ImportJob().schedule();
-		} catch (IOException | BackingStoreException ioe) {
-			throw new IllegalStateException(ioe);
-		}
+	
+	private void importGradleProject() {
+		// TODO implement gradle project
 	}
 
 	protected void importPlatform(IProgressMonitor monitor, File platformDir, boolean fixClasspath,

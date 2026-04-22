@@ -21,6 +21,7 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.wizard.Wizard;
 
 import com.hybris.yps.hyeclipse.utils.ProjectSourceJob;
+import com.hybris.yps.hyeclipse.wizards.pages.AttachSourcesPage;
 
 /**
  * Wizard to walk the user through attaching the sources to the projects in the workspace.

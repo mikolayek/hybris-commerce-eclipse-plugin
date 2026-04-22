@@ -37,11 +37,12 @@ import org.osgi.service.prefs.Preferences;
 import com.hybris.hyeclipse.commons.Constants;
 import com.hybris.yps.hyeclipse.Activator;
 import com.hybris.yps.hyeclipse.CommandState;
-import com.hybris.yps.hyeclipse.utils.AntImporter;
 import com.hybris.yps.hyeclipse.utils.FixProjectsUtils;
 import com.hybris.yps.hyeclipse.utils.Importer;
 import com.hybris.yps.hyeclipse.utils.ProjectSourceJob;
 import com.hybris.yps.hyeclipse.utils.ShellImporter;
+import com.hybris.yps.hyeclipse.wizards.pages.AttachSourcesPage;
+import com.hybris.yps.hyeclipse.wizards.pages.ImportPlatformPage;
 
 /**
  * Wizard to walk the user through importing all projects from a given platform

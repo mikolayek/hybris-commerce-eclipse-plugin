@@ -39,6 +39,7 @@ import org.osgi.service.prefs.Preferences;
 
 import com.hybris.yps.hyeclipse.Activator;
 import com.hybris.yps.hyeclipse.utils.Importer;
+import com.hybris.yps.hyeclipse.wizards.pages.SynchronizePlatformPage;
 
 public class SynchronizePlatformWizard extends Wizard implements IImportWizard {
 

@@ -25,6 +25,7 @@ import org.eclipse.jface.wizard.Wizard;
 
 import com.hybris.yps.hyeclipse.Activator;
 import com.hybris.yps.hyeclipse.utils.WorkingSetsUtils;
+import com.hybris.yps.hyeclipse.wizards.pages.CreateWorkingSetPage;
 
 /**
  *

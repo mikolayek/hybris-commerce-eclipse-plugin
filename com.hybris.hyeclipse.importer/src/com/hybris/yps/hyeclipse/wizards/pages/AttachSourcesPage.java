@@ -13,7 +13,7 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  ******************************************************************************/
-package com.hybris.yps.hyeclipse.wizards;
+package com.hybris.yps.hyeclipse.wizards.pages;
 
 import java.io.File;
 

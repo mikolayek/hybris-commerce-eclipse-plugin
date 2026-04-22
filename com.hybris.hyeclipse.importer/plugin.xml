@@ -142,11 +142,21 @@
       <category name="SAP"
             id="com.hybris.yps.hyeclipse.wizards">
       </category>
-      <wizard name="Import SAP Platform"
+      <wizard name="Import SAP Commerce - localextensions.xml (legacy)"
       		icon="icon/hybris.ico"
             category="com.hybris.yps.hyeclipse.wizards"
             class="com.hybris.yps.hyeclipse.wizards.ImportPlatformWizard"
             id="com.hybris.yps.hyeclipse.wizards.importplatform">
+         <description>
+            Import the SAP platform and extensions as defined in localextensions.xml
+         </description>
+      </wizard>
+      <wizard
+            category="com.hybris.yps.hyeclipse.wizards"
+            class="com.hybris.yps.hyeclipse.wizards.ImportGradlePlatformWizard"
+            icon="icon/icon-mono-dark.svg"
+            id="com.hybris.yps.hyeclipse.wizards.importgradleplatform"
+            name="Import SAP Commerce - manifest.json (gradle)">
          <description>
             Import the SAP platform and extensions as defined in localextensions.xml
          </description>
