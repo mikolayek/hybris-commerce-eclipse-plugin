@@ -16,7 +16,11 @@ on:
 
 jobs:
   build:
-
+    permissions:
+      artifact-metadata: write
+      contents: read
+      pull-requests: read
+      
     runs-on: ubuntu-latest
 
     steps:
