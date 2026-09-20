@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.hybris.hyeclipse</groupId>
@@ -31,10 +33,6 @@
 		<sonar.moduleKey>${project.groupId}:${project.artifactId}</sonar.moduleKey>
 		<sonar.java.source>21</sonar.java.source>
 	</properties>
-
-	<prerequisites>
-		<maven>3.0</maven>
-	</prerequisites>
 
 	<scm>
 		<connection>https://github.com/SAP/hybris-commerce-eclipse-plugin.git</connection>
@@ -68,9 +66,9 @@
 
 	<repositories>
 		<repository>
-			<id>2026-06</id>
+			<id>2026-09</id>
 			<layout>p2</layout>
-			<url>https://download.eclipse.org/releases/2026-06</url>
+			<url>https://download.eclipse.org/releases/2026-09</url>
 		</repository>
 	</repositories>
 
@@ -88,7 +86,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-enforcer-plugin</artifactId>
-				<version>3.6.2</version>
+				<version>3.6.3</version>
 				<executions>
 					<execution>
 						<id>enforce-maven</id>
@@ -98,7 +96,7 @@
 						<configuration>
 							<rules>
 								<requireMavenVersion>
-									<version>3.0</version>
+									<version>3.9.15</version>
 								</requireMavenVersion>
 							</rules>
 						</configuration>
@@ -139,7 +137,7 @@
 						<environment>
 							<os>macosx</os>
 							<ws>cocoa</ws>
-							<arch>x86_64</arch>
+							<arch>aarch64</arch>
 						</environment>
 					</environments>
 				</configuration>
