@@ -23,6 +23,7 @@
 		<!-- PROJECT SETTINGS -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<maven.version>3.9.15</maven.version>
 
 		<!-- sonar properties -->
 		<sonar.projectKey>hybris-commerce-eclipse-plugin</sonar.projectKey>
@@ -31,10 +32,6 @@
 		<sonar.moduleKey>${project.groupId}:${project.artifactId}</sonar.moduleKey>
 		<sonar.java.source>21</sonar.java.source>
 	</properties>
-
-	<prerequisites>
-		<maven>3.0</maven>
-	</prerequisites>
 
 	<scm>
 		<connection>https://github.com/SAP/hybris-commerce-eclipse-plugin.git</connection>
@@ -98,7 +95,7 @@
 						<configuration>
 							<rules>
 								<requireMavenVersion>
-									<version>3.0</version>
+									<version>${maven.version}</version>
 								</requireMavenVersion>
 							</rules>
 						</configuration>
