@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Extgen
 Bundle-SymbolicName: com.hybris.hyeclipse.extgen;singleton:=true
-Bundle-Version: 22.9.0.qualifier
+Bundle-Version: 22.9.0.RELEASE
 Bundle-Activator: com.hybris.hyeclipse.extgen.Activator
 Bundle-Vendor: SAP
 Require-Bundle: org.eclipse.ui,
@@ -15,7 +15,7 @@ Require-Bundle: org.eclipse.ui,
  com.hybris.hyeclipse.ytypesystem;bundle-version="[1.0.0,22.9.1)",
  com.hybris.hyeclipse.importer;bundle-version="[1.0.0,22.9.1)",
  com.hybris.hyeclipse.commons
-Bundle-RequiredExecutionEnvironment: JavaSE-17
+Bundle-RequiredExecutionEnvironment: JavaSE-21
 Bundle-ActivationPolicy: lazy
 Import-Package: org.eclipse.core.resources
 Automatic-Module-Name: com.hybris.hyeclipse.extgen
